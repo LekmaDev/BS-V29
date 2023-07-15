@@ -13,6 +13,7 @@ Server ZIP: https://codeload.github.com/LekmaDev/BS-29/zip/refs/heads/main
 3. Shop
 4. Online Rooms
 5. bot interacting with the server
+and more
 
 ## How to play BS V29: ##
 1. download server
