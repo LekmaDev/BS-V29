@@ -41,7 +41,7 @@ class LoginOkMessage(Writer):
 
         self.writeString()
 
-        self.writeString("RU") # Region
+        self.writeString("UK") # Region
         self.writeString()
 
         self.writeInt(1)

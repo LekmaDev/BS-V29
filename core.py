@@ -30,6 +30,42 @@ class Server:
 		if os.path.exists(plrsinfo):
 			conn = sqlite3.connect("database/Player/plr.db")
 			c = conn.cursor()
+			c.execute("""
+    CREATE TABLE IF NOT EXISTS plrs (
+        token TEXT DEFAULT '',
+        lowID INT DEFAULT 0,
+        name TEXT DEFAULT '',
+        trophies INT DEFAULT 0,
+        gold INT DEFAULT 0,
+        gems INT DEFAULT 0,
+        starpoints INT DEFAULT 0,
+        tickets INT DEFAULT 0,
+        Troproad INT DEFAULT 0,
+        profile_icon INT DEFAULT 0,
+        name_color INT DEFAULT 0,
+        clubID INT DEFAULT 0,
+        clubRole INT DEFAULT 0,
+        brawlerData JSON DEFAULT '{}',
+        brawlerID INT DEFAULT 0,
+        skinID INT DEFAULT 0,
+        roomID INT DEFAULT 0,
+        box INT DEFAULT 0,
+        bigbox INT DEFAULT 0,
+        online INT DEFAULT 0,
+        vip INT DEFAULT 0,
+        playerExp INT DEFAULT 0,
+        friends JSON DEFAULT '{}',
+        SCC TEXT DEFAULT '',
+        trioWINS INT DEFAULT 0,
+        sdWINS INT DEFAULT 0,
+        theme INT DEFAULT 0,
+        BPTOKEN INT DEFAULT 0,
+        BPXP INT DEFAULT 0,
+        quests JSON DEFAULT '{}',
+        freepass INT DEFAULT 0,
+        buypass INT DEFAULT 0
+    )
+""")
 			c.execute("UPDATE plrs SET roomID=0")
 			c.execute("UPDATE plrs SET online=0")
 			c.execute("SELECT * FROM plrs")

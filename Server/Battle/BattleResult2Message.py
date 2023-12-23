@@ -80,8 +80,8 @@ class BattleResult2Message(Writer):
             self.writeVint(-65 - (tropGainded)) # Trophies Result
         self.writeVint(0) # Unknown (Power Play Related)
         if self.player.vip == 1:
-            self.writeVint(32) # Doubled Tokens
-            tokenGained += 32
+            self.writeVint(69) # Doubled Tokens
+            tokenGained += 69
         else:
             self.writeVint(0) # Doubled Tokens
         self.writeVint(0) # Double Token Event
@@ -96,7 +96,7 @@ class BattleResult2Message(Writer):
         self.writeVint(0) # Coin Shower Event
         if tropGainded > 0:
             if self.player.vip == 1:
-                self.writeVint(8) # Underdog Trophies
+                self.writeVint(20) # Underdog Trophies
             else:
                 self.writeVint(0) # Underdog Trophies
         else:

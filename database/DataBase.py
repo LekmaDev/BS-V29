@@ -67,7 +67,42 @@ class DataBase:
         if os.path.exists("database/Player/plr.db"):
             self.conn = sql.connect("database/Player/plr.db")
             self.cur = self.conn.cursor()
-            self.cur.execute("CREATE TABLE IF NOT EXISTS plrs (token TEXT, lowID INT, name TEXT, trophies INT, gold INT, gems INT, starpoints INT, tickets INT, Troproad INT, profile_icon INT, name_color INT,clubID INT, clubRole INT, brawlerData JSON, brawlerID INT, skinID INT, roomID INT, box INT, bigbox INT, online INT, vip INT, playerExp INT, friends JSON, SCC TEXT,trioWINS INT,sdWINS INT, theme INT, BPTOKEN INT, BPXP INT, quests JSON, freepass INT, buypass INT)")
+            self.cur.execute("""
+    CREATE TABLE IF NOT EXISTS plrs (
+        token TEXT DEFAULT '',
+        lowID INT DEFAULT 0,
+        name TEXT DEFAULT '',
+        trophies INT DEFAULT 0,
+        gold INT DEFAULT 0,
+        gems INT DEFAULT 0,
+        starpoints INT DEFAULT 0,
+        tickets INT DEFAULT 0,
+        Troproad INT DEFAULT 0,
+        profile_icon INT DEFAULT 0,
+        name_color INT DEFAULT 0,
+        clubID INT DEFAULT 0,
+        clubRole INT DEFAULT 0,
+        brawlerData JSON DEFAULT '{}',
+        brawlerID INT DEFAULT 0,
+        skinID INT DEFAULT 0,
+        roomID INT DEFAULT 0,
+        box INT DEFAULT 0,
+        bigbox INT DEFAULT 0,
+        online INT DEFAULT 0,
+        vip INT DEFAULT 0,
+        playerExp INT DEFAULT 0,
+        friends JSON DEFAULT '{}',
+        SCC TEXT DEFAULT '',
+        trioWINS INT DEFAULT 0,
+        sdWINS INT DEFAULT 0,
+        theme INT DEFAULT 0,
+        BPTOKEN INT DEFAULT 0,
+        BPXP INT DEFAULT 0,
+        quests JSON DEFAULT '{}',
+        freepass INT DEFAULT 0,
+        buypass INT DEFAULT 0
+    )
+""")
             self.conn.commit()
             var = (self.player.token, self.player.low_id, self.player.name, self.player.trophies, self.player.gold, self.player.gems, self.player.starpoints, self.player.tickets, self.player.Troproad, self.player.profile_icon, self.player.name_color, self.player.club_low_id, self.player.club_role, json.dumps({"highest_trophies": self.player.highest_trophies, "brawlersTrophies": self.player.brawlers_trophies, "UnlockedBrawlers": self.player.UnlockedBrawlers, "UnlockedSkins": self.player.UnlockedSkins, "brawlerPowerLevel": self.player.brawlerPowerLevel, "brawlerPoints": self.player.brawlerPoints}), self.player.brawler_id, self.player.skin_id, self.player.room_id, self.player.box, self.player.bigbox, self.player.online, self.player.vip, self.player.player_experience, json.dumps([]), self.player.ccc, self.player.trioWINS, self.player.sdWINS, self.player.theme, self.player.BPTOKEN, self.player.BPXP, json.dumps([]), self.player.freepass, self.player.buypass)
             self.cur.execute("INSERT INTO plrs VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", var)

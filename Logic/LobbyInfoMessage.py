@@ -12,5 +12,5 @@ class LobbyInfoMessage(Writer):
         now = datetime.now()
         ping = random.randint(19,33)
         self.writeVint(0)#\nPlayer Online: {self.count}
-        self.writeString(f'VBC Brawl\nTime: {now.strftime("%H:%M %d.%m.%Y")}\nVB: t.me/vbc_brawl\nOnline: {self.count}\nPing: {ping}ms\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n')
+        self.writeString(f'NO')
         self.writeVint(0)
