@@ -2,6 +2,8 @@ from Logic.Commands.Client.LogicBoxDataCommand import LogicBoxDataCommand
 from Utils.Reader import BSMessageReader
 from Logic.Shop import Shop
 from Logic.LogicBuy import LogicBuy
+from database.DataBase import DataBase
+
 class LogicPurchaseOfferCommand(BSMessageReader):
     def __init__(self, client, player, initial_bytes):
         super().__init__(initial_bytes)
@@ -31,6 +33,15 @@ class LogicPurchaseOfferCommand(BSMessageReader):
         skin1 = offers[self.offer_index]['SkinID'][0]
         skin2 = offers[self.offer_index]['SkinID'][1]
         skin3 = offers[self.offer_index]['SkinID'][2]
+        if offers[self.offer_index]['ShopType'] == 0:
+            self.player.gems -= offers[self.offer_index]['Cost']
+            DataBase.replaceValue(self, 'gems', self.player.gems)
+        elif offers[self.offer_index]['ShopType'] == 1:
+            self.player.gold -= offers[self.offer_index]['Cost']
+            DataBase.replaceValue(self, 'gold', self.player.gold)
+        else:
+            pass#Нечего не найдено
+
 
         ID1 = 0
         ID2 = 0
@@ -104,6 +115,7 @@ class LogicPurchaseOfferCommand(BSMessageReader):
                 LogicBoxDataCommand(self.client, self.player, 9).send()
                 Shop.UpdateOfferData(self, self.offer_index)
         else:
+            
             if id1 != 0 and id2 != 0 and id3 != 0:
                 LogicBuy(self.client, self.player, ID1, ID2, ID3, multi1, multi2, multi3, brawler1, brawler2, brawler3, skin1, skin2, skin3).send()
                 Shop.UpdateOfferData(self, self.offer_index)
